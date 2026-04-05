@@ -1,6 +1,6 @@
 # FLAAP
 
-FLAAP (Flutter and LCO Aeroelastic Analysis Program) is a Windows-based Fortran project for flutter analysis using structural data from MSC Nastran and aerodynamic modeling based on a DLM / 2D potential formulation. The codebase combines structural modal inputs, aerodynamic panel generation, generalized aerodynamic force calculation, and export of flutter result tables such as V-g and V-f curves.
+FLAAP (Flutter and LCO Aeroelastic Analysis Program) is a Windows-based Fortran project for flutter analysis using structural data from MSC Nastran and aerodynamic modeling based on a DLM / potential formulation. The codebase combines structural modal inputs, aerodynamic panel generation, generalized aerodynamic force calculation, and export of flutter result tables such as V-g and V-f curves.
 
 This repository appears to be a research/development snapshot rather than a fully packaged release. It includes source files, a prebuilt executable, example input/output data, and many compiler artifacts.
 
