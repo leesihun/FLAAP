@@ -1,0 +1,15 @@
+% FLAAP config - 2-D pitch oscillation about the quarter chord (Theodorsen check)
+model        uvlm
+mode         harmonic
+title        Pitching aerofoil k = 0.5 about c/4
+surface1     wing, 0.0, 0.0, 0.0, 1.0, 0.0, 500.0, 0.0, 1.0, 12, 1
+symmetry     symmetric
+velocity     1.0
+density      1.0
+bref         0.5
+x_ref        0.25
+reduced_frequency    0.5
+pitch_amplitude_deg  1.0
+phase_deg    0.0
+ncycles      4
+output_dir   ../../../output/uvlm_pitch

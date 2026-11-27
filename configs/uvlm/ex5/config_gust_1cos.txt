@@ -1,0 +1,13 @@
+% FLAAP config - rectangular wing in a 1-cos gust (time-domain lift / drag / moment)
+model        uvlm
+mode         gust
+title        Rectangular wing A = 8 - 1-cos gust H = 5 c
+surface1     wing, 0.0, 0.0, 0.0, 1.0, 0.0, 4.0, 0.0, 1.0, 6, 16
+symmetry     symmetric
+velocity     20.0
+density      1.225
+alpha        2.0
+gust_shape   1-cos
+gust_velocity  1.0             # peak w [m/s]
+gust_length  5.0               # H [m] (gust length 2H = 10 chords)
+output_dir   ../../../output/uvlm_gust

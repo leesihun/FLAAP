@@ -1,0 +1,13 @@
+% FLAAP config - Radioss /EIG normal modes (anim_to_vtk mode files) -> modal model
+% The sample mode files are synthetic, written in the OpenRadioss format
+% (examples/openradioss/eig/README.md); the public OpenRadioss engine has no /EIG solver.
+% structure_file: folder with <run>A001.vtk ... (or one mode file, or the engine listing + mode_files)
+% bulk_file: starter deck -> SI coordinates, /BEGIN units, generalized masses, viewer mesh
+model           modal
+mode            analysis
+title           Radioss /EIG modes - cantilever plate (synthetic sample)
+structure       openradioss_eig
+structure_file  ../../../examples/openradioss/eig
+bulk_file       ../../../examples/openradioss/plate_cantilever_0000.rad
+nmodes          6
+output_dir      ../../../output/modal_openradioss_eig

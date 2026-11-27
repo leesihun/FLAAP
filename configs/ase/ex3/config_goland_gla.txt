@@ -1,0 +1,16 @@
+% FLAAP config - gust load alleviation on the Goland flap wing (root bending strain-gauge loop)
+model               ase
+mode                gla
+title               Goland flap - gust load alleviation
+structure           goland_flap
+damping             0.02
+actuator_frequency  20.0
+sensors             root_bending
+feedback_gains      -2.0e-6         # rad per N m
+velocity            100.0
+gust_amplitude      5.0
+gust_gradients      5, 30, 3        # H [m]
+velocities          40, 250, 106
+t_end               1.0
+dt                  0.0005
+output_dir          ../../../output/ase_goland_gla

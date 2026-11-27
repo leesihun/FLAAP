@@ -1,0 +1,9 @@
+% FLAAP config - OpenRadioss starter deck (/NODE, /SHELL, /PROP/SHELL, /MAT, /BCS) -> FE modal analysis
+% 1 m x 1 m x 10 mm aluminium plate, clamped edge (Leissa CFFF)
+model           modal
+mode            analysis
+title           OpenRadioss deck - cantilever plate modes
+structure       openradioss
+structure_file  ../../../examples/openradioss/plate_cantilever_0000.rad
+nmodes          6
+output_dir      ../../../output/modal_openradioss_plate

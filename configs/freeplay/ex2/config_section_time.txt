@@ -1,0 +1,10 @@
+% FLAAP config - freeplay time history and phase plane at one speed
+model           freeplay
+mode            time
+title           Typical section - freeplay LCO at 6 m/s
+structure       section
+freeplay_deg    1.0
+velocity        6.0
+t_end           40.0
+dt              0.002
+output_dir      ../../../output/freeplay_section_time

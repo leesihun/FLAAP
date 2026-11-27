@@ -1,0 +1,30 @@
+==============================================================================
+ASE validation: flutter suppression on the Vasconcellos/Conner section
+==============================================================================
+open-loop p-method (AeroelasticSystem.flutter): V_f = 9.2450 m/s, f = 3.363 Hz
+ASE closed loop with K = 0:                     V_f = 9.2450 m/s (bisection 9.2440)
+law A: pitch + pitch rate        gains [-1.   -0.03  0.    0.  ]: V_f = 12.971 m/s (+40.3 %)
+law B: full output feedback      gains [  1.6    0.16 -18.    -2.3 ]: V_f = 17.402 m/s (+88.2 %)
+
+margins, law B (GM in dB; lower = gain reduction that destabilises):
+   V    P  N_ccw  Nyquist  eig     GM_low   GM_up     PM[deg] @w[rad/s]  GM check
+  5.0   0     0   True    True       -inf      inf     78.10 @  19.50   None
+  9.0   0     0   True    True      -3.05      inf     20.12 @  24.63   True
+ 12.0   2     2   True    True      -3.62      inf     62.40 @  44.81   True
+ 15.0   2     2   True    True      -4.74      inf     18.58 @  13.59   True
+ 17.0   2     2   True    True      -0.83      inf      0.94 @   5.89   True
+ 18.0   2     1   False   False      -inf      inf     36.00 @  77.41   None
+timing: flutter 0.8 s, margins 0.5 s
+
+------------------------------------------------------------------------------
+GLA, Goland + flap: root-bending strain-gauge feedback k = -2.0e-06 rad/(N m), V = 100.0 m/s, Uds = 5.0 m/s
+   H[m]   Mx open    Mx GLA   change   Fz open   Fz GLA   change   flap[deg]
+   5.0      48208     42152   -12.6%     14183    13009    -8.3%    4.54
+  15.0      47750     35783   -25.1%     16464    13380   -18.7%    3.80
+  30.0      46700     35847   -23.2%     16551    13671   -17.4%    3.79
+flutter: open 159.67 m/s, ASE K = 0 159.67 m/s, with GLA 174.77 m/s
+GLA loop at 100 m/s: P = 0 unstable open-loop poles, N_ccw = 0 -> stable (Nyquist), eigenvalues: stable; gain margins: upper +6.51 dB @ 58.91 rad/s, lower -inf dB; phase margin: inf deg @ nan rad/s
+timing: build 2.9 s, gust runs 0.1 s
+
+figures: ase_vg_rootlocus.png, ase_bode_nyquist.png, ase_gla_goland.png
+total runtime 6.4 s

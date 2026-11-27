@@ -1,0 +1,29 @@
+title = "Goland wing (clamped, M = 0, sea level)"
+
+[model]
+type = "goland"
+nmodes = 4
+damping = 0.0
+
+[aero]
+mach = 0.0
+nchord = 6
+nspan = 12
+kmax = 2.0
+nk = 20
+
+[flutter]
+method = ["pk", "k", "p"]
+density = 1.225
+velocities = [60.0, 260.0, 101]
+nlag = 4
+
+[gust]
+velocity = 100.0
+altitude = 0.0
+gradients = [9.0, 107.0, 6]
+nlag = 4
+
+[output]
+directory = "../results/goland"
+plots = true

@@ -1,0 +1,12 @@
+% FLAAP config - DLM generalized aerodynamic forces and unsteady pressures
+model        aero
+mode         gaf
+title        Goland wing - DLM GAF table
+structure    goland
+nmodes       4
+mach         0.0
+nchord       6
+nspan        12
+kmax         2.0
+nk           16
+output_dir   ../../../output/aero_goland

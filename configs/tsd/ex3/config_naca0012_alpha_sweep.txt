@@ -1,0 +1,14 @@
+% FLAAP config - TSD lifting mean flow: incidence sweep of a rectangular NACA 0012 wing (A = 8) at M 0.8
+% shows the nonlinear transonic lift curve and the shock positions vs alpha (upper shock moves aft and
+% strengthens, lower one weakens and disappears).  Inviscid small-disturbance theory: shocks stronger and
+% further aft than in experiments.
+model          tsd
+mode           steady
+title          NACA 0012 wing A = 8 - TSD incidence sweep M 0.8
+surface1       wing, 0.0, 0.0, 0.0, 1.0, 0.0, 4.0, 0.0, 1.0, 8, 10
+symmetry       symmetric
+mach           0.8
+tsd_thickness  naca0012
+tsd_camber     flat
+alphas         0, 3, 4           # start, stop, count [deg], ~3 min
+output_dir     ../../../output/tsd_naca0012_alpha_sweep

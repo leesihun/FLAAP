@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flaap"
+version = "2.0.0"
+description = "Flutter and LCO Aeroelastic Analysis Program - Python edition (DLM/TSD aero, PK/K/p flutter, RFA state space, gust/manoeuvre loads, trim, freeplay LCO, ASE, FE modal from Nastran/ANSYS/OpenRadioss/STL)"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.21", "scipy>=1.7", "matplotlib>=3.4"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+geometry = ["gmsh>=4.11", "trimesh>=3.9"]          # STL / STEP -> FE modal
+ansys = ["ansys-mapdl-reader"]                     # binary .rst modal results
+docs = ["reportlab>=3.6", "pillow"]                # white paper PDF
+
+[project.scripts]
+flaap = "flaap.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["flaap*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

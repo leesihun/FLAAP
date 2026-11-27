@@ -1,0 +1,75 @@
+FLAAP VLM / UVLM validation
+==============================================================================
+1. Steady VLM (horseshoe lattice, Trefftz-plane induced drag)
+  case                                                FLAAP        ref       err
+  elliptic A = 4, 8x24: CL_alpha [1/rad]             3.7850     3.8832    -2.53 %  Helmbold
+  elliptic A = 4, 8x24: span efficiency e            1.0032     1.0000    +0.32 %  lifting line
+  elliptic A = 4, 12x48: CL_alpha [1/rad]            3.7599     3.8832    -3.18 %  Helmbold
+  elliptic A = 4, 12x48: span efficiency e           1.0001     1.0000    +0.01 %  lifting line
+  elliptic A = 8, 8x24: CL_alpha [1/rad]             4.8322     4.9058    -1.50 %  Helmbold
+  elliptic A = 8, 8x24: span efficiency e            1.0036     1.0000    +0.36 %  lifting line
+  elliptic A = 8, 12x48: CL_alpha [1/rad]            4.8122     4.9058    -1.91 %  Helmbold
+  elliptic A = 8, 12x48: span efficiency e           1.0009     1.0000    +0.09 %  lifting line
+  A = 1000 strip, 8 chordwise: CL_alpha              6.2748     6.2832    -0.13 %  thin aerofoil 2 pi
+  rectangle A = 4, 8x20 : CL_alpha 3.6753, e 0.9918, x_ac/c 0.2326   (lifting surface 3.6-3.7, e 0.98-0.99)
+  rectangle A = 4, 8x40 : CL_alpha 3.6436, e 0.9907, x_ac/c 0.2324   (lifting surface 3.6-3.7, e 0.98-0.99)
+  rectangle A = 4, 8x80 : CL_alpha 3.6275, e 0.9915, x_ac/c 0.2323   (lifting surface 3.6-3.7, e 0.98-0.99)
+
+2. Indicial lift of a flat plate (nonlinear UVLM, prescribed flat wake, dt = dx/U)
+   s = 2Ut/c  Wagner UVLM    exact     err   Kussner UVLM    exact     err
+         1.0       0.6109   0.6006  +1.72%         0.4254   0.4167  +2.09%
+         2.0       0.6738   0.6693  +0.67%         0.6298   0.5508 +14.34%
+         4.0       0.7595   0.7580  +0.21%         0.7067   0.6945  +1.75%
+         6.0       0.8132   0.8126  +0.09%         0.7793   0.7731  +0.80%
+        10.0       0.8752   0.8750  +0.02%         0.8586   0.8561  +0.29%
+        20.0       0.9365   0.9366  -0.01%         0.9318   0.9312  +0.06%
+        29.5       0.9582   0.9584  -0.02%         0.9562   0.9559  +0.02%
+  (Wagner nc = 20, Kussner nc = 12.  The UVLM sees the gust front panel by panel, so the
+   Kussner rise while the front crosses the chord (s <= 2) is discretised: up to +14 % at
+   s = 2, where the front reaches the trailing edge; within 2 % for s >= 4.)
+
+3. Harmonic pitch about c/4 (theta0 = 1 deg), |CL| / |CL_Theodorsen| and phase error
+  k = 0.10, nc = 12: |CL| 0.09318 (Theodorsen 0.09295), ratio 1.0025, phase error +0.46 deg
+  k = 0.50, nc =  8: |CL| 0.08498 (Theodorsen 0.07996), ratio 1.0628, phase error +0.71 deg
+  k = 0.50, nc = 16: |CL| 0.08253 (Theodorsen 0.07996), ratio 1.0321, phase error +0.38 deg
+  k = 0.50, nc = 32: |CL| 0.08127 (Theodorsen 0.07996), ratio 1.0164, phase error +0.19 deg
+  k = 0.50: Richardson (1st order) nc -> inf: ratio 1.0006
+  k = 1.00, nc =  8: |CL| 0.12366 (Theodorsen 0.11151), ratio 1.1090, phase error -3.20 deg
+  k = 1.00, nc = 16: |CL| 0.11787 (Theodorsen 0.11151), ratio 1.0571, phase error -1.66 deg
+  k = 1.00, nc = 32: |CL| 0.11477 (Theodorsen 0.11151), ratio 1.0293, phase error -0.86 deg
+  k = 1.00: Richardson (1st order) nc -> inf: ratio 1.0016
+
+4. Harmonic plunge h0 = 0.05 b: lift and mean thrust vs Theodorsen / Garrick (nc = 12)
+      k  |CL| ratio    C_T UVLM  C_T Garrick      err
+   0.10      1.0025  5.6658e-05   5.6689e-05   -0.05%
+   0.25      1.0151  2.5181e-04   2.5228e-04   -0.19%
+   0.50      1.0488  7.4500e-04   7.4660e-04   -0.22%
+   0.75      1.0771  1.4406e-03   1.4460e-03   -0.37%
+   1.00      1.0902  2.3267e-03   2.3644e-03   -1.59%
+
+5. Linearised UVLM (frequency domain) vs Theodorsen: max relative error of the
+   plunge/pitch lift GAFs (wake 60 chords)
+    nc   k = 0.1   k = 0.5   k = 1.0
+     8     1.28%     5.32%     6.96%
+    16     0.67%     2.68%     3.55%
+    32     0.36%     1.34%     1.80%
+  first-order convergence in nc (the same discrete wake/time-step model as the UVLM).
+
+6. 3-D rectangular wing A = 4 (6x10), alpha = 5 deg, impulsive start
+  prescribed wake: CL(15 c) = 0.3249 (99.6 % of steady VLM 0.3261), CD = 0.00812 (Trefftz CDi 0.00846), CL(0+) = 0.2883  [7.5 s]
+  free wake: CL(15 c) = 0.3248 (99.6 % of steady VLM 0.3261), CD = 0.00812 (Trefftz CDi 0.00846), CL(0+) = 0.2883  [30.0 s]
+  As in Katz & Plotkin (2001, ch. 13), the 3-D lift builds up faster than Wagner's 2-D
+  function and reaches the steady VLM value; the free wake (roll-up) changes the lift by
+  < 0.1 % at this incidence (prescribed / free wakes give the same loads to 4 digits).
+
+7. Goland wing flutter, rho = 1.02 kg/m^3 (4 beam modes)
+   references: Murua et al. (2012) UVLM 165.0 m/s, 10.98 Hz; Wang (1999) 163.8 m/s
+  linear UVLM  8x12 + PK: V_f =  172.69 m/s, f = 10.634 Hz [0.7 s]
+  linear UVLM 16x12 + PK: V_f =  170.04 m/s, f = 10.803 Hz [3.2 s]
+  linear UVLM 32x12 + PK: V_f =  168.51 m/s, f = 10.900 Hz [10.6 s]
+  linear UVLM, Richardson nc -> inf: V_f           166.9760   165.0000    +1.20 %  Murua UVLM
+  DLM 8x12 + PK (same modes):     V_f =  165.11 m/s, f = 11.176 Hz
+  discrete-time UVLM state space 8x12 (2988 states): V_f =  173.24 m/s, f = 10.673 Hz [35.0 s]  (time-domain eigenvalues;
+   agrees with PK on the same lattice -> the frequency- and time-domain forms are consistent)
+
+total time 308 s

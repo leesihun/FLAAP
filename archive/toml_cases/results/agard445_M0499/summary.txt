@@ -1,0 +1,9 @@
+AGARD 445.6 weakened model 3, M = 0.499 (test density, measured frequencies)
+ mode   f [Hz]     w [rad/s]   gen.mass     zeta
+    1     9.6000     60.3186  1.0000e+00   0.0000
+    2    38.1700    239.8292  1.0000e+00   0.0000
+    3    48.3500    303.7920  1.0000e+00   0.0000
+    4    91.5400    575.1628  1.0000e+00   0.0000
+Flutter analysis (pk-method), rho = 0.3915 kg/m^3
+      flutter  mode  2  V =   174.783 m/s  f =   22.851 Hz ( 143.580 rad/s)  k =  0.2295
+  => critical: flutter at V = 174.783 m/s, f = 22.851 Hz

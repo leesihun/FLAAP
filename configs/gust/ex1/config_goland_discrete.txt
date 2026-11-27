@@ -1,0 +1,17 @@
+% FLAAP config - CS-25 1-cos discrete gust envelope (Roger RFA state space)
+model           gust
+mode            discrete
+title           Goland wing - 1-cos gust envelope
+structure       goland
+nmodes          4
+damping         0.02
+mach            0.0
+kmax            2.0
+nk              20
+nlag            4
+velocity        100.0
+altitude        0.0
+gust_gradients  9, 107, 8
+fg              1.0
+station1        root, 0.0, 0.05, 0.0, 0.0, 1.0, 0.0
+output_dir      ../../../output/gust_goland_discrete

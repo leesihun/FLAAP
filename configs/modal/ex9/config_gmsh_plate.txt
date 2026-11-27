@@ -1,0 +1,17 @@
+% FLAAP config - gmsh .geo script -> MITC4 shell FE -> modes
+% plate_wing.geo: 0.5 x 1.0 m plate, transfinite 6 x 12, Recombine (quad4),
+% Physical Curve("Root") = clamped edge.  Same plate as examples/ansys / calculix.
+model           modal
+mode            analysis
+title           gmsh plate wing - quad4 shell modes
+structure       gmsh
+structure_file  ../../../examples/gmsh/plate_wing.geo
+thickness       0.004          # [m]
+material        custom
+young           71.7e9
+poisson         0.33
+material_density 2810
+clamp_group     Root           # physical group of the .geo
+nmodes          6
+mesh_save       ../../../output/modal_gmsh_plate/plate_wing.msh
+output_dir      ../../../output/modal_gmsh_plate

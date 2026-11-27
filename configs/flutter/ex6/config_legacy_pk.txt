@@ -1,0 +1,10 @@
+% FLAAP config - original Fortran-FLAAP input deck (LEE_input.txt, M_K.txt, MODESHAPE_input.txt)
+model           flutter
+mode            pk
+title           Legacy Fortran deck - PK
+structure       legacy
+structure_file  ../../../legacy_fortran
+k_list          0.0, 0.01, 0.02, 0.04, 0.07, 0.1, 0.15, 0.2, 0.3, 0.45, 0.6, 0.8, 1.0, 1.4, 2.0, 3.0
+altitude        1000.0
+velocities      5, 300, 296
+output_dir      ../../../output/flutter_legacy

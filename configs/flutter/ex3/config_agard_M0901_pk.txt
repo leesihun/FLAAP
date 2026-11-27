@@ -1,0 +1,16 @@
+% FLAAP config - AGARD 445.6 weakened 3, M = 0.901, DLM + PK
+% density = test density x (model mass / test mass)
+% experiment: V_f = 296.7 m/s, FSI 0.3700
+model        flutter
+mode         pk
+title        AGARD 445.6 - M 0.901 - DLM PK
+structure    agard445
+experimental_frequencies  true
+nmodes       4
+mach         0.901
+nchord       8
+nspan        10
+k_list       0.0001, 0.03, 0.06, 0.1, 0.15, 0.2, 0.3, 0.45, 0.6, 0.9
+density      0.09104
+velocities   150, 450, 121
+output_dir   ../../../output/flutter_agard_M0901

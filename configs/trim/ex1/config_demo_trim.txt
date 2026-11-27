@@ -1,0 +1,10 @@
+% FLAAP config - 1-g static aeroelastic trim of the demo flexible aircraft
+model        trim
+mode         static
+title        Demo aircraft - 1 g trim
+structure    demo_aircraft
+nmodes       4
+velocity     100.0
+density      1.225
+nz           1.0
+output_dir   ../../../output/trim_demo

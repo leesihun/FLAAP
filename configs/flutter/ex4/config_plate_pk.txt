@@ -1,0 +1,22 @@
+% FLAAP config - user-drawn swept plate: geometry + material -> FE modes -> DLM -> PK flutter
+model             flutter
+mode              pk
+title             Swept aluminium plate - PK flutter
+structure         plate
+plate_root_le     0.0, 0.0, 0.0
+plate_root_chord  0.50
+plate_tip_le      0.35, 1.00, 0.0
+plate_tip_chord   0.30
+plate_nchord      8
+plate_nspan       14
+thickness         0.003
+material          aluminum
+nmodes            6
+mach              0.0
+nchord            8
+nspan             12
+kmax              1.5
+nk                16
+density           1.225
+velocities        10, 120, 111
+output_dir        ../../../output/flutter_plate_pk

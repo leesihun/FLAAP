@@ -1,0 +1,18 @@
+% FLAAP config - AGARD 445.6 flutter at M 0.954 about a lifting TSD mean flow (alpha = 1 deg)
+% same case as tsd/ex2 (alpha = 0: experiment FSI 0.3059, V_f 307.4 m/s, Yates 1987) with the mean flow
+% solved nonlinearly at incidence: the upper / lower shocks move, so the GAFs and the flutter point change.
+% ~10-60 min depending on machine load (the coupled upper / lower system is ~8x the work
+% of the symmetric one; 10 reduced frequencies, mean flow ~10 s).
+model          tsd
+mode           flutter
+title          AGARD 445.6 - M 0.954 - alpha 1 deg - TSD PK
+structure      agard445
+experimental_frequencies  true
+nmodes         4
+mach           0.954
+tsd_thickness  naca65a004
+tsd_alpha      1.0
+k_list         0.0001, 0.03, 0.06, 0.1, 0.15, 0.2, 0.3, 0.45, 0.6, 0.9
+density        0.05802
+velocities     150, 450, 121
+output_dir     ../../../output/tsd_agard_M0954_alpha1_flutter

@@ -1,0 +1,56 @@
+==============================================================================
+Freeplay LCO validation: Vasconcellos (2016) / Conner (1997) section, delta0 = 1 deg
+==============================================================================
+linear flutter speed (K = K_beta): 9.232 m/s   (published 9.2 m/s)
+flutter speed with K = 0         : 3.052 m/s
+DF stable LCO branch from        : 1.88 m/s (subcritical fold)
+
+  V     kind   A_TM/d0  A1_TM/d0  A_DF/d0   err_A   w_TM    w_DF    err_w  pitch[deg] h[mm]
+  3.5  lco      1.195    1.053    1.153   +3.7%   15.26   15.33   -0.5%    0.481    0.30
+  5.0  lco      1.204    1.059    1.160   +3.8%   15.65   15.72   -0.5%    0.907    0.45
+  7.0  lco      1.227    1.075    1.183   +3.7%   16.33   16.42   -0.6%    1.749    0.44
+  8.5  lco      1.369    1.150    1.328   +3.1%   17.38   17.64   -1.5%    2.794    0.65
+
+bifurcation sweep (time marching, continuation):
+  V     up: kind  A/d0     down: kind  A/d0
+  1.0   decay      0.000   decay      0.000
+  1.5   decay      0.000   decay      0.000
+  2.0   decay      0.000   lco        1.162
+  2.5   decay      0.000   lco        1.180
+  3.0   decay      0.117   lco        1.189
+  3.5   lco        1.195   lco        1.195
+  4.0   lco        1.199   lco        1.199
+  4.5   lco        1.202   lco        1.202
+  5.0   lco        1.204   lco        1.204
+  5.5   lco        1.206   lco        1.206
+  6.0   lco        1.209   lco        1.209
+  6.5   lco        1.215   lco        1.215
+  7.0   lco        1.227   lco        1.227
+  7.5   lco        1.248   lco        1.248
+  8.0   lco        1.288   lco        1.288
+  8.5   lco        1.369   lco        1.369
+  9.0   lco        1.593   lco        1.593
+  9.5   growing      -     growing      -  
+
+amplitude scaling (delta0 = 2 deg vs 1 deg):
+  V =  4.0 m/s: flap ratio 2.0000, pitch ratio 2.0000
+  V =  7.0 m/s: flap ratio 2.0000, pitch ratio 2.0000
+below the fold: V=1.50 A0=1.5d0 -> decay, V=1.50 A0=4.0d0 -> decay, V=1.50 A0=10.0d0 -> decay
+preloaded freeplay (gap centre 0.5 delta0) at 6 m/s: lco, amplitude 0.747 d0, mean 0.027 deg
+preloaded freeplay (gap centre 1.5 delta0) at 6 m/s: decay, amplitude 0.000 d0, mean 0.445 deg
+timing: DF 0.84 s (85 speeds), TM 2.55 s (4 x 80 s), sweeps 15.3 s
+
+------------------------------------------------------------------------------
+Goland wing + 50-83 % span flap (hinge 75 % c), zeta = 1 %, delta0 = 0.5 deg
+K_h = 9340.3 N m/rad, I_h = 0.2548 kg m^2, omega_flap = 191.45 rad/s
+V_f(K): 0.00K_h:142.5, 0.02K_h:145.4, 0.05K_h:148.0, 0.10K_h:150.4, 0.20K_h:152.8, 0.40K_h:154.6, 0.70K_h:155.6, 1.00K_h:156.0
+DF: V_f0 = 142.50 m/s, V_f(K_h) = 155.95 m/s
+  V      kind   A_TM/d0  A_DF/d0   w_TM    w_DF
+ 140.0  decay    0.161      nan   78.33     nan
+ 145.0  lco      1.066    1.062   76.48   76.49
+ 150.0  lco      1.262    1.220   74.27   74.38
+ 153.0  lco      1.723    1.487   72.44   72.79
+timing: build 3.7 s, DF 0.93 s, TM 1.8 s (4 x 8 s)
+
+figures: freeplay_bifurcation.png, freeplay_time_history.png, freeplay_phase_plane.png, freeplay_keq.png, goland_freeplay_lco.png
+total runtime 30.1 s

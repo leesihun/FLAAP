@@ -1,0 +1,27 @@
+% FLAAP config - swept aluminium plate at M = 2, piston theory (Van Dyke 2nd order) + PK
+% density 0.06 kg/m^3, a ~ 295 m/s (~20 km): V_f ~ 590 m/s is consistent with M = 2 (matched point)
+% cross-check: aero_method machbox (3-D linear potential theory) gives V_f = 538 m/s, 10.44 Hz;
+% piston theory (no tip / side-edge relief, strip-wise) 588 m/s, 10.52 Hz (+9 %)
+model             flutter
+mode              pk
+title             Swept plate M 2 - piston theory PK
+structure         plate
+plate_root_le     0.0, 0.0, 0.0
+plate_root_chord  0.50
+plate_tip_le      0.35, 1.00, 0.0
+plate_tip_chord   0.30
+plate_nchord      8
+plate_nspan       14
+thickness         0.003
+material          aluminum
+nmodes            6
+mach              2.0
+aero_method       piston
+piston_order      2
+nchord            8
+nspan             12
+kmax              1.0
+nk                16
+density           0.06
+velocities        200, 1000, 161
+output_dir        ../../../output/flutter_plate_piston_M2

@@ -1,0 +1,10 @@
+% FLAAP config - steady VLM polar of a rectangular wing (A = 8)
+% reference: lifting-surface CL_alpha ~ 4.6-4.7 /rad (elliptic-wing Helmbold 4.91 is the upper bound), e ~ 0.96 (Glauert delta ~ 0.04)
+model        uvlm
+mode         steady
+title        Rectangular wing A = 8 - steady VLM
+surface1     wing, 0.0, 0.0, 0.0, 1.0, 0.0, 4.0, 0.0, 1.0, 8, 24
+symmetry     symmetric
+mach         0.0
+alphas       -4, 10, 8          # start, stop, count [deg]
+output_dir   ../../../output/uvlm_rect_steady

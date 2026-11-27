@@ -1,0 +1,10 @@
+% FLAAP config - abrupt (unchecked) elevator input
+model          maneuver
+mode           abrupt
+title          Demo aircraft - abrupt elevator
+structure      demo_aircraft
+velocity       100.0
+density        1.225
+amplitude_deg  1.0
+t_end          4.0
+output_dir     ../../../output/maneuver_demo_abrupt

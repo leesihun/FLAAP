@@ -1,0 +1,9 @@
+% FLAAP config - Goland wing beam model, natural modes
+% run: python FLAAP_main.py --config configs/modal/ex1/config_goland_modal.txt
+model        modal
+mode         analysis
+title        Goland wing - beam FE modes
+structure    goland
+nmodes       4
+nelem        20
+output_dir   ../../../output/modal_goland

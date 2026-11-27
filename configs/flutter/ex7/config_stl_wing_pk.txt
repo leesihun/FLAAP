@@ -1,0 +1,23 @@
+% FLAAP config - flutter of a wing built from an STL file (tet10 FE + DLM + PK)
+% reference (examples/stl_wing_modal.py): flutter ~161 m/s, ~41 Hz
+model             flutter
+mode              pk
+title             STL wing - PK flutter
+structure         stl
+structure_file    ../../../examples/geometry/wing.stl
+fe_type           solid
+element           tet10
+mesh_size         0.03
+material          custom
+young             0.4e9
+poisson           0.3
+material_density  120
+clamp             y, 0.0
+nmodes            6
+mach              0.3
+density           1.225
+bref              0.1625
+surface1          wing, 0, 0, 0, 0.40, 0.2116, 1.2, 0, 0.25, 8, 12
+symmetry          symmetric
+velocities        10, 300, 146
+output_dir        ../../../output/flutter_stl_wing

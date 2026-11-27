@@ -1,0 +1,16 @@
+% FLAAP config - Goland wing flutter with linearised UVLM aerodynamics
+% reference: Murua et al. (UVLM) 165 m/s, 10.98 Hz; FLAAP DLM 164.6 m/s (rho = 1.02)
+model        uvlm
+mode         flutter
+title        Goland wing - linearised UVLM flutter
+structure    goland
+nmodes       4
+mach         0.0
+nchord       8
+nspan        12
+kmax         1.0
+nk           14
+density      1.02
+velocities   120, 220, 11
+wake_chords  30
+output_dir   ../../../output/uvlm_goland_flutter

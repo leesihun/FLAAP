@@ -1,0 +1,17 @@
+% FLAAP config - STL geometry + material -> tet10 solid FE -> modes
+% NACA 0012 wing, semispan 1.2 m, chords 0.40 / 0.25 m, balsa-like material, clamped at y = 0
+model             modal
+mode              analysis
+title             STL wing - solid tet10 modal analysis
+structure         stl
+structure_file    ../../../examples/geometry/wing.stl
+fe_type           solid
+element           tet10
+mesh_size         0.03
+material          custom
+young             0.4e9
+poisson           0.3
+material_density  120
+clamp             y, 0.0
+nmodes            6
+output_dir        ../../../output/modal_stl_wing

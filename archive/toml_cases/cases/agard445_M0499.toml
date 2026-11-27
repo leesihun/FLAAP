@@ -1,0 +1,21 @@
+title = "AGARD 445.6 weakened model 3, M = 0.499 (test density, measured frequencies)"
+
+[model]
+type = "agard445"
+nmodes = 4
+experimental_frequencies = true
+
+[aero]
+mach = 0.499
+nchord = 8
+nspan = 10
+kmax = 1.2
+nk = 14
+
+[flutter]
+method = ["pk"]
+density = 0.3915      # rho_test * m_model / m_test (matches the test mass ratio)
+velocities = [100.0, 300.0, 101]
+
+[output]
+directory = "../results/agard445_M0499"

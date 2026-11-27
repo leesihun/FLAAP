@@ -1,0 +1,12 @@
+% FLAAP config - active flutter suppression on the typical section (flap as control input)
+% law B: full output feedback beta_cmd = K [pitch, pitch_rate, plunge, plunge_rate]
+model               ase
+mode                flutter_suppression
+title               Typical section - active flutter suppression
+structure           section
+actuator_frequency  15.0
+actuator_damping    0.7
+sensors             pitch, pitch_rate, plunge, plunge_rate
+feedback_gains      1.6, 0.16, -18.0, -2.3
+velocities          1.0, 25.0, 241
+output_dir          ../../../output/ase_section_afs

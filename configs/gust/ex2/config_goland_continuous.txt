@@ -1,0 +1,14 @@
+% FLAAP config - von Karman continuous turbulence (A-bar, N0, PSD)
+model              gust
+mode               continuous
+title              Goland wing - continuous turbulence
+structure          goland
+nmodes             4
+damping            0.02
+kmax               2.0
+nk                 20
+velocity           100.0
+altitude           0.0
+turbulence_length  762.0
+station1           root, 0.0, 0.05, 0.0, 0.0, 1.0, 0.0
+output_dir         ../../../output/gust_goland_continuous

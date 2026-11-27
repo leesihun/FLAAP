@@ -1,0 +1,12 @@
+% FLAAP config - CalculiX *FREQUENCY results (.frd + .dat) -> modal model
+% The sample files are synthetic, written in the ccx ASCII .frd layout
+% (examples/calculix/README.md); plate.inp is the matching ccx deck.
+% frequency_file: optional - the .dat next to the .frd is used automatically
+model           modal
+mode            analysis
+title           CalculiX modes - cantilever plate (synthetic sample)
+structure       calculix
+structure_file  ../../../examples/calculix/plate.frd
+frequency_file  ../../../examples/calculix/plate.dat
+nmodes          6
+output_dir      ../../../output/modal_calculix

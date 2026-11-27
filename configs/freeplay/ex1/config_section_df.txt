@@ -1,0 +1,13 @@
+% FLAAP config - control-surface freeplay LCO on the Vasconcellos (2016) / Conner (1997) section
+% reference: linear flutter 9.2 m/s (K_beta), V_f(K=0) ~ 3.05 m/s, LCO band in between
+model           freeplay
+mode            describing_function
+title           Typical section - freeplay LCO (DF + time marching)
+structure       section
+nonlinearity    freeplay
+freeplay_deg    1.0                # half-gap delta0
+velocities      0.5, 11.0, 85      # DF sweep [m/s]
+tm_velocities   4.0, 6.0, 8.0      # time-marching check
+t_end           80.0
+dt              0.005
+output_dir      ../../../output/freeplay_section_df

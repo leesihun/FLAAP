@@ -1,0 +1,14 @@
+% FLAAP config - Goland wing, PK + K + p methods compared
+model        flutter
+mode         all
+methods      pk, k, p
+title        Goland wing - PK / K / p comparison
+structure    goland
+nmodes       4
+mach         0.0
+kmax         2.0
+nk           20
+nlag         4
+altitude     0.0
+velocities   60, 260, 101
+output_dir   ../../../output/flutter_goland_all

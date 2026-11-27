@@ -1,0 +1,50 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# ---- Python edition ----
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+# run outputs (regenerate with tools/run_all_configs.py)
+output/
+# ANSYS sample listings are inputs, not executables
+!examples/ansys/*.out
+
+# misc local artifacts
+debug.log
+*.log
+NVIDIA Corporation/
+studio_runs/

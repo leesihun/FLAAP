@@ -1,0 +1,30 @@
+title = "Plate model from the MSC Nastran example 20.f06"
+# 20.f06: 45-node CQUAD4 plate (12 x 6 units, free-free); rigid modes skipped.
+# Geometry/units of the example deck are illustrative - adapt the surface,
+# bref and unit scales for real models.
+
+[model]
+type = "nastran"
+f06 = "../20.f06"
+nmodes = 4
+
+[aero]
+mach = 0.0
+bref = 1.5
+symmetry = "none"
+spline = "ips"
+kmax = 1.0
+nk = 12
+
+[[aero.surface]]
+name = "plate"
+root_le = [-6.0, 0.0, 0.0]
+root_chord = 6.0
+tip_le = [-6.0, 12.0, 0.0]
+tip_chord = 6.0
+nchord = 6
+nspan = 12
+
+[output]
+directory = "../results/nastran_example"
+plots = false

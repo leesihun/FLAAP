@@ -1,0 +1,20 @@
+% FLAAP config - CalculiX .frd (mm, tonne, s; short node format) -> DLM + PK flutter
+% plate_mm_short.frd holds a static step and 3 zero-frequency modes first;
+% they are skipped (ICTYPE 0 / below 1e-3 Hz).
+model           flutter
+mode            pk
+title           CalculiX plate (mm-t-s) - PK flutter
+structure       calculix
+structure_file  ../../../examples/calculix/plate_mm_short.frd
+length_scale    0.001          # mm -> m
+mass_scale      1000           # tonne -> kg
+nmodes          4
+surface1        plate, 0, 0, 0, 0.5, 0, 1.0, 0, 0.5, 6, 12
+symmetry        symmetric
+bref            0.25
+mach            0.0
+kmax            2.0
+nk              16
+density         1.225
+velocities      10, 150, 141
+output_dir      ../../../output/flutter_calculix

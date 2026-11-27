@@ -1,0 +1,7 @@
+% FLAAP config - AGARD 445.6 weakened model 3 (orthotropic MITC4 plate)
+model        modal
+mode         analysis
+title        AGARD 445.6 weakened 3 - FE modes
+structure    agard445
+nmodes       4
+output_dir   ../../../output/modal_agard

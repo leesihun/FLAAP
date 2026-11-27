@@ -1,0 +1,13 @@
+% FLAAP config - Goland wing with a 50-83 % span flap, hinge freeplay (DLM + Roger RFA)
+model           freeplay
+mode            describing_function
+title           Goland flap - freeplay LCO
+structure       goland_flap
+nmodes          4
+damping         0.01
+freeplay_deg    0.5
+velocities      130, 160, 61
+tm_velocities   145
+t_end           8.0
+dt              0.0002
+output_dir      ../../../output/freeplay_goland_flap

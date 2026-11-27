@@ -1,0 +1,10 @@
+% FLAAP config - import an ANSYS MAPDL modal listing (PRNSOL DOF) + CDB mesh
+% cantilever plate 0.5 x 1.0 x 0.004 m, Al 7075; reference f1 = 3.37 Hz
+model           modal
+mode            analysis
+title           ANSYS modal import - cantilever plate
+structure       ansys
+structure_file  ../../../examples/ansys/plate_modal.out
+bulk_file       ../../../examples/ansys/plate.cdb
+nmodes          6
+output_dir      ../../../output/modal_ansys_plate

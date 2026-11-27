@@ -1,0 +1,10 @@
+% FLAAP config - loop margins (Bode / Nyquist) of the flutter-suppression law at 12 m/s
+model               ase
+mode                margins
+title               Typical section - loop margins at 12 m/s
+structure           section
+sensors             pitch, pitch_rate, plunge, plunge_rate
+feedback_gains      1.6, 0.16, -18.0, -2.3
+velocity            12.0
+velocities          2.0, 18.0, 9
+output_dir          ../../../output/ase_section_margins

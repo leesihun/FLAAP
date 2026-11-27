@@ -1,0 +1,17 @@
+Goland wing (clamped, M = 0, sea level)
+ mode   f [Hz]     w [rad/s]   gen.mass     zeta
+    1     7.6638     48.1532  1.0000e+00   0.0000
+    2    15.2352     95.7255  1.0000e+00   0.0000
+    3    38.8576    244.1492  1.0000e+00   0.0000
+    4    55.3869    348.0061  1.0000e+00   0.0000
+Flutter analysis (pk-method), rho = 1.225 kg/m^3
+      flutter  mode  2  V =   153.286 m/s  f =   11.248 Hz (  70.672 rad/s)  k =  0.4216
+  => critical: flutter at V = 153.286 m/s, f = 11.248 Hz
+Flutter analysis (k-method), rho = 1.225 kg/m^3
+      flutter  mode  2  V =   153.270 m/s  f =   11.249 Hz (  70.677 rad/s)  k =  0.4217
+      flutter  mode  4  V =   494.386 m/s  f =   50.452 Hz ( 317.001 rad/s)  k =  0.5863
+  hump-recovery  mode  4  V =  2002.835 m/s  f =   44.619 Hz ( 280.350 rad/s)  k =  0.1280
+  => critical: flutter at V = 153.270 m/s, f = 11.249 Hz
+Flutter analysis (p-method (RFA state space)), rho = 1.225 kg/m^3
+      flutter  mode  2  V =   153.077 m/s  f =   11.247 Hz (  70.667 rad/s)  k =  0.4222
+  => critical: flutter at V = 153.077 m/s, f = 11.247 Hz

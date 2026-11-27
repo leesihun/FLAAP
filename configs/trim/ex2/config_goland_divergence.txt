@@ -1,0 +1,8 @@
+% FLAAP config - static divergence of the clamped Goland wing
+model        trim
+mode         divergence
+title        Goland wing - divergence
+structure    goland
+nmodes       4
+density      1.225
+output_dir   ../../../output/trim_goland_divergence

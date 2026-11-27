@@ -1,0 +1,16 @@
+% FLAAP config - Goland wing flutter, DLM + PK (sea level)
+% reference: 3-D lifting-surface flutter speed 145-178 m/s (strip theory 137 m/s)
+model        flutter
+mode         pk
+title        Goland wing - PK flutter
+structure    goland
+nmodes       4
+damping      0.0
+mach         0.0
+nchord       6
+nspan        12
+kmax         2.0
+nk           20
+density      1.225
+velocities   60, 260, 101      # start, stop, count [m/s]
+output_dir   ../../../output/flutter_goland_pk

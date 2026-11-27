@@ -1,0 +1,10 @@
+% FLAAP config - CS-25.331(c)(2) checked pitch manoeuvre to n_z = 2.5
+model        maneuver
+mode         checked
+title        Demo aircraft - checked pitch manoeuvre
+structure    demo_aircraft
+velocity     100.0
+density      1.225
+nz_limit     2.5
+control      elevator
+output_dir   ../../../output/maneuver_demo_checked

@@ -1,0 +1,23 @@
+% FLAAP config - gmsh .geo plate -> MITC4 FE -> DLM + PK flutter
+% Same plate and aero model as flutter/ex11 (CalculiX .frd): same flutter speed.
+model           flutter
+mode            pk
+title           gmsh plate wing - PK flutter
+structure       gmsh
+structure_file  ../../../examples/gmsh/plate_wing.geo
+thickness       0.004
+material        custom
+young           71.7e9
+poisson         0.33
+material_density 2810
+clamp_group     Root
+nmodes          4
+surface1        plate, 0, 0, 0, 0.5, 0, 1.0, 0, 0.5, 6, 12
+symmetry        symmetric
+bref            0.25
+mach            0.0
+kmax            2.0
+nk              16
+density         1.225
+velocities      10, 150, 141
+output_dir      ../../../output/flutter_gmsh

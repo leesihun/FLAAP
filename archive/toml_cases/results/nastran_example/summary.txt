@@ -1,0 +1,6 @@
+Plate model from the MSC Nastran example 20.f06
+ mode   f [Hz]     w [rad/s]   gen.mass     zeta
+    1     0.0349      0.2192  1.0000e+00   0.0000
+    2     0.0418      0.2628  1.0000e+00   0.0000
+    3     0.0901      0.5660  1.0000e+00   0.0000
+    4     0.0936      0.5881  1.0000e+00   0.0000

@@ -1,0 +1,8 @@
+% FLAAP config - TSD steady transonic flow over the AGARD 445.6 wing (NACA 65A004)
+model          tsd
+mode           steady
+title          AGARD 445.6 - TSD steady M 0.954
+structure      agard445
+mach           0.954
+tsd_thickness  naca65a004
+output_dir     ../../../output/tsd_agard_steady

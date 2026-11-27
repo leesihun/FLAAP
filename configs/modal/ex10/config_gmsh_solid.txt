@@ -1,0 +1,17 @@
+% FLAAP config - gmsh .geo (OpenCASCADE box) -> tet10 solid FE -> modes
+% box_beam.geo: 1.0 m x 0.10 m x 0.02 m aluminium bar, Physical Surface("Root").
+% Euler-Bernoulli first bending: 16.32 Hz (flat) / 81.6 Hz (in-plane).
+model           modal
+mode            analysis
+title           gmsh solid bar - tet10 modes
+structure       gmsh
+structure_file  ../../../examples/gmsh/box_beam.geo
+mesh_order      2              # tet10
+mesh_size       0.025          # [m] (also set in the .geo)
+material        custom
+young           71.7e9
+poisson         0.33
+material_density 2810
+clamp_group     Root
+nmodes          4
+output_dir      ../../../output/modal_gmsh_solid

@@ -1,0 +1,17 @@
+title = "Fortran FLAAP input deck in the repository root (Conyers plate wing)"
+
+[model]
+type = "legacy"
+path = ".."
+
+[aero]
+spline = "legacy"
+k = [0.0, 0.01, 0.02, 0.04, 0.07, 0.1, 0.15, 0.2, 0.3, 0.45, 0.6, 0.8, 1.0, 1.4, 2.0, 3.0]
+
+[flutter]
+method = ["pk"]
+altitude = 1000.0
+velocities = [5.0, 300.0, 296]
+
+[output]
+directory = "../results/legacy_conyer"

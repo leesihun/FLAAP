@@ -1,0 +1,15 @@
+% FLAAP config - steady (k = 0) DLM pressures of a plate wing with an aileron
+model        aero
+mode         steady
+title        Plate wing with aileron - steady pressures
+structure    plate
+plate_root_le     0.0, 0.0, 0.0
+plate_root_chord  0.50
+plate_tip_le      0.35, 1.00, 0.0
+plate_tip_chord   0.30
+thickness    0.003
+nmodes       4
+surface1     wing, 0.0, 0.0, 0.0, 0.50, 0.35, 1.00, 0.0, 0.30, 10, 14
+control1     aileron, wing, 0.75, 0.55, 0.95
+mach         0.3
+output_dir   ../../../output/aero_plate_steady

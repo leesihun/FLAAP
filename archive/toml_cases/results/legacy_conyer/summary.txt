@@ -1,0 +1,26 @@
+Fortran FLAAP input deck in the repository root (Conyers plate wing)
+ mode   f [Hz]     w [rad/s]   gen.mass     zeta
+    1     3.9893     25.0656  1.0000e+00   0.0000
+    2    16.7927    105.5117  1.0000e+00   0.0000
+    3    24.7305    155.3865  1.0000e+00   0.0000
+    4    54.5697    342.8716  1.0000e+00   0.0000
+    5    69.1255    434.3284  1.0000e+00   0.0000
+    6   104.3455    655.6221  1.0000e+00   0.0000
+    7   106.8219    671.1819  1.0000e+00   0.0000
+    8   135.2515    849.8105  1.0000e+00   0.0000
+    9   144.2492    906.3443  1.0000e+00   0.0000
+   10   171.4702   1077.3788  1.0000e+00   0.0000
+Flutter analysis (pk-method), rho = 1.1117 kg/m^3
+      flutter  mode  2  V =    21.258 m/s  f =   10.477 Hz (  65.828 rad/s)  k =  0.2362
+   divergence  mode  1  V =    27.500 m/s  f =    0.000 Hz (   0.000 rad/s)  k =  0.0000
+  hump-recovery  mode  2  V =    52.813 m/s  f =    0.050 Hz (   0.316 rad/s)  k =  0.0005
+      flutter  mode  4  V =    74.642 m/s  f =   37.092 Hz ( 233.058 rad/s)  k =  0.2379
+      flutter  mode  3  V =    98.348 m/s  f =    3.634 Hz (  22.836 rad/s)  k =  0.0177
+  hump-recovery  mode  3  V =   101.368 m/s  f =    2.128 Hz (  13.369 rad/s)  k =  0.0101
+      flutter  mode  3  V =   103.046 m/s  f =    1.165 Hz (   7.321 rad/s)  k =  0.0054
+      flutter  mode  8  V =   130.350 m/s  f =   92.338 Hz ( 580.174 rad/s)  k =  0.3392
+      flutter  mode  6  V =   152.841 m/s  f =   74.862 Hz ( 470.369 rad/s)  k =  0.2345
+  hump-recovery  mode  3  V =   157.500 m/s  f =    0.000 Hz (   0.000 rad/s)  k =  0.0000
+  hump-recovery  mode  8  V =   174.602 m/s  f =   82.035 Hz ( 515.439 rad/s)  k =  0.2250
+      flutter  mode  3  V =   245.710 m/s  f =    0.522 Hz (   3.281 rad/s)  k =  0.0010
+  => critical: flutter at V = 21.258 m/s, f = 10.477 Hz

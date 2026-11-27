@@ -1,0 +1,14 @@
+% FLAAP config - AGARD 445.6 transonic flutter with TSD GAFs (transonic dip), ~1 min
+% experiment (Yates 1987 TM-100492 Table II): FSI 0.3059, V_f 307.4 m/s at M 0.954
+model          tsd
+mode           flutter
+title          AGARD 445.6 - M 0.954 - TSD PK
+structure      agard445
+experimental_frequencies  true
+nmodes         4
+mach           0.954
+tsd_thickness  naca65a004
+k_list         0.0001, 0.03, 0.06, 0.1, 0.15, 0.2, 0.3, 0.45, 0.6, 0.9
+density        0.05802
+velocities     150, 450, 121
+output_dir     ../../../output/tsd_agard_M0954_flutter

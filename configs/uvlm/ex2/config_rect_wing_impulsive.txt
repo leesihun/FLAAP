@@ -1,0 +1,12 @@
+% FLAAP config - impulsively started rectangular wing (A = 8), nonlinear UVLM
+% reference: CL(t) builds up (Wagner-like, faster in 3-D) to the steady VLM CL; run ends at 99.6 % of it
+model        uvlm
+mode         impulsive
+title        Rectangular wing A = 8 - impulsive start at alpha 5 deg
+surface1     wing, 0.0, 0.0, 0.0, 1.0, 0.0, 4.0, 0.0, 1.0, 6, 16
+symmetry     symmetric
+velocity     10.0
+density      1.225
+alpha        5.0
+t_end        2.0               # [s] = 20 chords travelled
+output_dir   ../../../output/uvlm_rect_impulsive

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FLAAP Studio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23122820'/%3E%3Cpath d='M6 22 L16 8 L26 22 Z' fill='none' stroke='%23ccf48d' stroke-width='2.5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/studio.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo"></span><b>FLAAP</b>&nbsp;Studio</div>
+  <nav class="tabs" id="mainTabs">
+    <button data-tab="model" class="active">Model</button>
+    <button data-tab="results">Results</button>
+  </nav>
+  <div class="topstatus">
+    <span id="jobBadge" class="badge idle">idle</span>
+    <span id="serverBadge" class="badge">server …</span>
+  </div>
+</header>
+
+<!-- ============================ MODEL WORKSPACE ============================ -->
+<main id="ws-model" class="workspace">
+  <aside class="left panel">
+    <section>
+      <h3>Config library</h3>
+      <input id="cfgFilter" class="filter" placeholder="filter configs…">
+      <div id="cfgList" class="list cfglist"></div>
+      <div class="row gap">
+        <button id="btnNew" class="btn">New</button>
+        <button id="btnReloadCfgs" class="btn ghost" title="Refresh list">↻</button>
+      </div>
+    </section>
+    <section>
+      <h3>Model tree</h3>
+      <div id="tree" class="tree"></div>
+      <div class="row gap wrap">
+        <button id="btnAddSurface" class="btn small">+ Surface</button>
+        <button id="btnAddControl" class="btn small">+ Control</button>
+        <button id="btnAddStation" class="btn small">+ Station</button>
+      </div>
+    </section>
+  </aside>
+
+  <section class="center">
+    <div class="toolbar" id="editorToolbar">
+      <div class="seg" id="toolSeg">
+        <button data-tool="select" class="active" title="Select / drag handles (V)">Select</button>
+        <button data-tool="draw" title="Draw surface: root LE, tip LE, tip TE, root TE (S)">Draw surface</button>
+        <button data-tool="station" title="Place monitor station (M)">Station</button>
+      </div>
+      <label class="chk"><input type="checkbox" id="optSnap" checked> snap</label>
+      <select id="optSnapStep" title="snap step [m]">
+        <option value="auto">auto</option><option>0.001</option><option>0.005</option><option>0.01</option>
+        <option>0.05</option><option>0.1</option><option>0.25</option><option>0.5</option><option>1</option>
+      </select>
+      <label class="chk"><input type="checkbox" id="optBoxes" checked> DLM boxes</label>
+      <label class="chk"><input type="checkbox" id="optMirror"> mirror</label>
+      <button id="btnFit" class="btn ghost small">Fit</button>
+      <span class="spacer"></span>
+      <span id="cursorPos" class="mono dim"></span>
+    </div>
+    <div class="viewport" id="editorWrap">
+      <canvas id="editorCanvas"></canvas>
+      <div class="hint" id="editorHint"></div>
+    </div>
+  </section>
+
+  <aside class="right panel">
+    <section>
+      <h3>Properties</h3>
+      <div id="props" class="props"></div>
+    </section>
+    <section>
+      <h3>Analysis</h3>
+      <div class="form-row"><label>model</label><select id="selModel"></select></div>
+      <div class="form-row"><label>mode</label><select id="selMode"></select></div>
+      <div id="routeDesc" class="desc"></div>
+      <div id="routeForm"></div>
+    </section>
+  </aside>
+
+  <section class="bottom panel">
+    <div class="bottombar">
+      <div class="seg" id="bottomSeg">
+        <button data-pane="config" class="active">Config</button>
+        <button data-pane="diag">Diagnostics <span id="diagCount" class="count"></span></button>
+        <button data-pane="log">Run log</button>
+      </div>
+      <span class="spacer"></span>
+      <span class="dim small" id="cfgSource"></span>
+      <input id="runName" class="name" placeholder="run name" title="run name -> studio_runs/&lt;name&gt;, output/studio_&lt;name&gt;">
+      <button id="btnValidate" class="btn">Validate</button>
+      <button id="btnRun" class="btn primary">Run ▶</button>
+      <button id="btnCancel" class="btn danger" hidden>Stop</button>
+      <button id="btnOpenResult" class="btn acid" hidden>Open results</button>
+    </div>
+    <div class="pane" data-pane="config">
+      <textarea id="cfgText" spellcheck="false" class="mono"></textarea>
+    </div>
+    <div class="pane" data-pane="diag" hidden><div id="diagView" class="diag"></div></div>
+    <div class="pane" data-pane="log" hidden><pre id="logView" class="log mono"></pre></div>
+  </section>
+</main>
+
+<!-- ============================ RESULTS WORKSPACE ============================ -->
+<main id="ws-results" class="workspace results" hidden>
+  <aside class="left panel">
+    <section class="grow">
+      <h3>Runs <button id="btnReloadRuns" class="btn ghost small right" title="Refresh">↻</button></h3>
+      <input id="runFilter" class="filter" placeholder="filter runs…">
+      <div id="runList" class="list runlist"></div>
+    </section>
+  </aside>
+  <section class="center">
+    <div class="toolbar">
+      <div class="seg" id="viewSeg"></div>
+      <span class="spacer"></span>
+      <span id="runTitle" class="dim"></span>
+    </div>
+    <div class="viewport scroll" id="resultView"></div>
+  </section>
+  <aside class="right panel">
+    <section><h3 id="ctrlTitle">View</h3><div id="viewCtrls" class="props"></div></section>
+  </aside>
+  <section class="bottom panel">
+    <div class="bottombar"><b class="small">log.txt</b><span class="spacer"></span><span id="runPath" class="mono dim small"></span></div>
+    <div class="pane"><pre id="runLog" class="log mono"></pre></div>
+  </section>
+</main>
+
+<div id="lightbox" class="lightbox" hidden><img alt=""><div class="cap"></div></div>
+<div id="toast" class="toast" hidden></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

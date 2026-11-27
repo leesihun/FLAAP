@@ -1,0 +1,15 @@
+% FLAAP config - harmonically plunging high-aspect-ratio wing (2-D limit): Garrick thrust
+% reference: Theodorsen |CL| and Garrick C_T = pi k^2 (h0/b)^2 (F^2 + G^2)
+model        uvlm
+mode         harmonic
+title        Plunging wing k = 0.5 - lift and thrust
+surface1     wing, 0.0, 0.0, 0.0, 1.0, 0.0, 500.0, 0.0, 1.0, 12, 1
+symmetry     symmetric
+velocity     1.0
+density      1.0
+bref         0.5
+x_ref        0.25
+reduced_frequency  0.5
+plunge_amplitude   0.025      # h0 = 0.05 b
+ncycles      4
+output_dir   ../../../output/uvlm_plunge
