@@ -163,3 +163,104 @@ export function controlBoxes(s, c) {
 }
 
 export const isIndexedKey = (k) => Object.values(RX).some((rx) => rx.test(k));
+
+// ----------------------------------------------------------------- structure orientation
+// Mirrors flaap/structures/transform.py: struct_mirror (x|y|z), struct_rotate (axis, deg, ...),
+// struct_translate (dx, dy, dz); applied in that order.
+const AX = { x: 0, y: 1, z: 2 };
+const I3 = () => [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
+const mul3 = (A, B) => A.map((r) => [0, 1, 2].map((j) => r[0] * B[0][j] + r[1] * B[1][j] + r[2] * B[2][j]));
+const mulv = (A, v) => A.map((r) => r[0] * v[0] + r[1] * v[1] + r[2] * v[2]);
+
+export function rotMatrix(axis, deg) {
+  const a = deg * Math.PI / 180;
+  let c = Math.cos(a), s = Math.sin(a);
+  if (Math.abs(c) < 1e-12) c = 0;
+  if (Math.abs(s) < 1e-12) s = 0;
+  const i = AX[axis], j = (i + 1) % 3, k = (i + 2) % 3;
+  const R = I3();
+  R[j][j] = c; R[j][k] = -s; R[k][j] = s; R[k][k] = c;
+  return R;
+}
+
+export const orientIdentity = (T) => !T.mirror && !T.rotations.length && !T.translate.some((t) => t);
+
+export function orientFromValues(v) {
+  const T = { mirror: null, rotations: [], translate: [0, 0, 0] };
+  const mir = String(v.struct_mirror ?? '').trim().toLowerCase();
+  if (mir in AX) T.mirror = mir;
+  const rot = splitList(v.struct_rotate);
+  for (let i = 0; i + 1 < rot.length; i += 2) {
+    const ax = rot[i].toLowerCase(), d = num(rot[i + 1], NaN);
+    if (ax in AX && Number.isFinite(d)) T.rotations.push([ax, d]);
+  }
+  const tr = splitList(v.struct_translate).map((x) => num(x, 0));
+  if (tr.length === 3) T.translate = tr;
+  return T;
+}
+
+export function orientToValues(T, v) {
+  const set = (k, val) => { if (val === null) delete v[k]; else v[k] = val; };
+  set('struct_mirror', T.mirror || null);
+  set('struct_rotate', T.rotations.length ? T.rotations.map(([a, d]) => `${a}, ${fnum(d)}`).join(', ') : null);
+  set('struct_translate', T.translate.some((t) => t) ? T.translate.map(fnum).join(', ') : null);
+}
+
+export function orientMatrix(T) {
+  let Q = I3();
+  if (T.mirror) Q[AX[T.mirror]][AX[T.mirror]] = -1;
+  for (const [a, d] of T.rotations) Q = mul3(rotMatrix(a, d), Q);
+  return Q;
+}
+
+export const orientPoint = (T, p) => mulv(orientMatrix(T), [p[0], p[1], p[2] || 0]).map((x, i) => x + T.translate[i]);
+
+export function orientDescribe(T) {
+  const p = [];
+  if (T.mirror) p.push(`mirror ${T.mirror}`);
+  for (const [a, d] of T.rotations) p.push(`rotate ${a} ${fnum(d)}°`);
+  if (T.translate.some((t) => t)) p.push(`shift ${T.translate.map(fnum).join(', ')}`);
+  return p.join(' · ') || 'as modelled';
+}
+
+/** Transformed planform (same fields as a surface); null when the chord direction would turn
+ *  (a Surface has its chord along +x, so a preset aero surface cannot follow). */
+export function orientSurface(s, T) {
+  const Q = orientMatrix(T);
+  if (Math.abs(Q[0][0] - 1) > 1e-9 || Math.abs(Q[1][0]) > 1e-9 || Math.abs(Q[2][0]) > 1e-9) return null;
+  let r = orientPoint(T, s.rle), t = orientPoint(T, s.tle), rc = s.rc, tc = s.tc;
+  let controls = (s.controls || []).map((c) => ({ ...c }));
+  if (t[1] < r[1] - 1e-12) {
+    [r, t] = [t, r]; [rc, tc] = [tc, rc];
+    controls = controls.map((c) => ({ ...c, eta0: 1 - c.eta1, eta1: 1 - c.eta0 }));
+  }
+  return { ...s, rle: r, tle: t, rc, tc, controls };
+}
+
+/** Rotation sequence (<= 3 quarter turns) that maps the file frame to the aero frame, given the
+ *  direction the leading->trailing edge and the root->tip span point to in the file.
+ *  Returns null for an invalid pair of directions. */
+export function solveOrientation(chordDir, spanDir) {
+  const unit = (s) => { const v = [0, 0, 0]; v[AX[s[1]]] = s[0] === '-' ? -1 : 1; return v; };
+  const a = unit(chordDir), b = unit(spanDir);
+  if (a.some((x, i) => x && b[i])) return null;                     // same axis
+  const c = [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  const want = [a, b, c];                                          // Q rows
+  const same = (Q) => Q.every((r, i) => r.every((x, j) => Math.abs(x - want[i][j]) < 1e-9));
+  if (same(I3())) return [];
+  const moves = [];
+  for (const ax of ['x', 'y', 'z']) for (const d of [90, 180, -90]) moves.push([ax, d]);
+  let frontier = [[]];
+  for (let depth = 1; depth <= 3; depth++) {
+    const next = [];
+    for (const seq of frontier) for (const m of moves) {
+      const s2 = [...seq, m];
+      let Q = I3();
+      for (const [ax, d] of s2) Q = mul3(rotMatrix(ax, d), Q);
+      if (same(Q)) return s2;
+      next.push(s2);
+    }
+    frontier = next;
+  }
+  return null;
+}
